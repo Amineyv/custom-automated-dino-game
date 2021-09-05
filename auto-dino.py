@@ -5,7 +5,7 @@ import time
 import numpy as np
 import keyboard
 
-# first let's take a full screenshot
+# First, let's take a full screenshot.
 def take_screenshot():
 	with mss.mss() as sct:
 		filename = sct.shot(output='fullscreen.png')

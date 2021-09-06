@@ -11,9 +11,9 @@ def take_screenshot():
 		filename = sct.shot(output='fullscreen.png')
 	return filename
 
-# Now we need to first determine what is the region we want to jump when OpenCV detects any obstacles
+# Now we need to determine what is the region we want to jump when OpenCV detects any obstacles. 
 # This is a little bit tricky, because there are other obstacles in the background and you need to specify the exact location of the 
-# obstacles that have hit box.
+# obstacles that have hit boxes.
 
 def get_frame(region):
 	with mss.mss() as sct:
@@ -22,7 +22,7 @@ def get_frame(region):
 		# print(screen_grayscale.shape)
 		# cv2.imwrite("region_dino_chrome.png", screen_grayscale)
 	return screen_grayscale
-# In this function we need to draw two lines. First we need the region and then we draw to test if we are jumping in the range of both 
+# In this function we need to draw two lines. Before that, we need the region and then we draw to test if we are jumping in the range of both 
 # Birds and Fences.
 def print_lines(region):
 	with mss.mss() as sct:
@@ -35,7 +35,7 @@ def print_lines(region):
 	cv2.imwrite("region_on_screen.png", screen_grayscale)
 	
 
-# Well, this simple function does the main Jumping part.
+# Well, this simple function does the main Jumping calculation.
 # If we have more than 5 different colors, we press the jump button
 def collision_detected(frame):
 		for x in [0,39]:
@@ -52,15 +52,15 @@ region = {
 	"height":40,
 }
 
-# The following parts are the first steps of the program. You need to take a screen shot and then get the frame.
-# Later on, in next steps, you have to print lines using the third statement.
+# The following parts are the initializing steps of the program. You need to take a screen shot and then get the frame.
+# Later on, in next steps, you need to print lines using the third statement.
 """
 take_screenshot()
 frame = get_frame(region)
 print_lines(frame)
 """
 
-# Unlimited loop, first if is wheter you need to quit your program by pressing Q on your keyboard.
+# Unlimited loop, the first If statement is to quit your program by pressing Q on your keyboard.
 # Time functions here help us calculate the start time and the end time for showing FPS.
 while True:
 	if keyboard.is_pressed('q'):
